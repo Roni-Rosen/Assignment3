@@ -33,14 +33,14 @@ def test_get_all_dishes():
     assert response.status_code == 200
     assert len(response.json()) == 3
 
-#
-# @pytest.mark.order4
-# def test_post_invalid_dish():
-#     response = requests.post(f"{base_url}/dishes", json={"name": "blah"})
-#     assert response.text == '-3'
-#     assert response.status_code in [400, 404, 422]
-#
-#
+
+@pytest.mark.order4
+def test_post_invalid_dish():
+    response = requests.post(f"{base_url}/dishes", json={"name": "blah"})
+    assert response.text == '-3'
+    assert response.status_code in [400, 404, 422]
+
+
 # @pytest.mark.order5
 # def test_post_dish_with_existing_name():
 #     response = requests.post(f"{base_url}/dishes", json={"name": "orange"})
