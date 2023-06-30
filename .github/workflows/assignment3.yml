@@ -17,7 +17,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          tags: mealsService:latest
+          tags: meals_service:latest
           outputs: type=docker,dest=/tmp/image.tar
         #   echo "image successfully built" >> log.txt || echo "image not able to be built" >> log.txt
 
@@ -40,7 +40,7 @@ jobs:
 #      - name: check meals image is loaded
 #        run: docker image ls
 #      - name: run image in container
-#        run: docker run -d -p8000:8000 mealsService
+#        run: docker run -d -p8000:8000 meals_service
 #      - name: Check container is running
 #        run: docker ps
 #      # set up python and pytest environment
