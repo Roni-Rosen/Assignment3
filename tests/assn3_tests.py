@@ -41,13 +41,13 @@ def test_post_invalid_dish():
     assert response.status_code in [400, 404, 422]
 
 
-# @pytest.mark.order5
-# def test_post_dish_with_existing_name():
-#     response = requests.post(f"{base_url}/dishes", json={"name": "orange"})
-#     assert response.text == '-2'
-#     assert response.status_code in [400, 404, 422]
-#
-#
+@pytest.mark.order5
+def test_post_dish_with_existing_name():
+    response = requests.post(f"{base_url}/dishes", json={"name": "orange"})
+    assert response.text == '-2'
+    assert response.status_code in [400, 404, 422]
+
+
 # @pytest.mark.order6
 # def test_post_meal():
 #     response = requests.post(f"{base_url}/meals", json=meal_data)
