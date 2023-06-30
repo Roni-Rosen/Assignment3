@@ -13,7 +13,7 @@ def test_post_dishes():
     ids = []
     for dish_name in dish_data:
         response = requests.post(f"{base_url}/dishes", json={"name": dish_name})
-        assert response.status_code == 201
+        assert response.status_code == 200
         dish_id = int(response.text)
         ids.append(dish_id)
     assert len(set(ids)) == 3  # all 3 IDs are unique
