@@ -1,4 +1,3 @@
-import order as order
 import pytest
 import requests
 
