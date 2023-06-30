@@ -48,13 +48,13 @@ def test_post_dish_with_existing_name():
     assert response.status_code in [400, 404, 422]
 
 
-# @pytest.mark.order6
-# def test_post_meal():
-#     response = requests.post(f"{base_url}/meals", json=meal_data)
-#     assert response.status_code == 201
-#     assert int(response.text) > 0
-#
-#
+@pytest.mark.order6
+def test_post_meal():
+    response = requests.post(f"{base_url}/meals", json=meal_data)
+    assert response.status_code == 201
+    assert int(response.text) > 0
+
+
 # @pytest.mark.order7
 # def test_get_all_meals():
 #     response = requests.get(f"{base_url}/meals")
