@@ -13,7 +13,7 @@ def test_post_dishes():
     ids = []
     for dish_name in dish_data:
         response = requests.post(f"{base_url}/dishes", json={"name": dish_name})
-        assert response.status_code == 200
+        assert response.status_code == 201
         dish_id = int(response.text)
         ids.append(dish_id)
     assert len(set(ids)) == 3  # all 3 IDs are unique
@@ -27,12 +27,12 @@ def test_get_dish_by_id():
     assert 0.9 <= response.json()["sodium"] <= 1.1
 
 
-# @pytest.mark.order3
-# def test_get_all_dishes():
-#     response = requests.get(f"{base_url}/dishes")
-#     assert response.status_code == 200
-#     assert len(response.json()) == 3
-#
+@pytest.mark.order3
+def test_get_all_dishes():
+    response = requests.get(f"{base_url}/dishes")
+    assert response.status_code == 200
+    assert len(response.json()) == 3
+
 #
 # @pytest.mark.order4
 # def test_post_invalid_dish():
