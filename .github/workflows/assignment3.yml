@@ -27,22 +27,22 @@ jobs:
           name: meals
           path: /tmp/image.tar
       
-#  test:
-#    needs: build
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#    # download image and run it in a container
-#      - name: Download artifact
-#        uses: actions/download-artifact@v3
-#      - name: Load Docker image from previous job
-#        run: docker load --input meals/image.tar
-#      - name: check meals image is loaded
-#        run: docker image ls
-#      - name: run image in container
-#        run: docker run -d -p8000:8000 meals_service
-#      - name: Check container is running
-#        run: docker ps
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    # download image and run it in a container
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+      - name: Load Docker image from previous job
+        run: docker load --input meals/image.tar
+      - name: check meals image is loaded
+        run: docker image ls
+      - name: run image in container
+        run: docker run -d -p8000:8000 meals_service
+      - name: Check container is running
+        run: docker ps
 #      # set up python and pytest environment
 #      - name: Checkout code
 #        uses: actions/checkout@v3

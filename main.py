@@ -66,6 +66,6 @@ def call_delete_meal_by_name(meal_name):
 def call_update_meal_by_id(meal_id):
     return meals.update_meal_by_id(meal_id)
 
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8000)
+#
+# if __name__ == "__main__":
+#     app.run(host='0.0.0.0', port=8000)
