@@ -1,3 +1,4 @@
+import order as order
 import pytest
 import requests
 
@@ -20,13 +21,13 @@ def test_post_dishes():
     meal_data["appetizer"], meal_data["main"], meal_data["dessert"] = ids
 
 
-# @pytest.mark.order2
-# def test_get_dish_by_id():
-#     response = requests.get(f"{base_url}/dishes/{meal_data['appetizer']}")
-#     assert response.status_code == 200
-#     assert 0.9 <= response.json()["sodium"] <= 1.1
-#
-#
+@pytest.mark.order2
+def test_get_dish_by_id():
+    response = requests.get(f"{base_url}/dishes/{meal_data['appetizer']}")
+    assert response.status_code == 200
+    assert 0.9 <= response.json()["sodium"] <= 1.1
+
+
 # @pytest.mark.order3
 # def test_get_all_dishes():
 #     response = requests.get(f"{base_url}/dishes")
