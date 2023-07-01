@@ -45,10 +45,10 @@ jobs:
     # download image and run it in a container
       - name: Download artifact
         uses: actions/download-artifact@v3
-      - name: Download log artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: build-log
+#      - name: Download log artifact
+#        uses: actions/download-artifact@v3
+#        with:
+#          name: build-log
       - name: Update log
         run: |
           value=`cat log.txt`
@@ -60,7 +60,7 @@ jobs:
       - name: run image in container
         run: docker run -p8000:8000 meals_service &
       - name: Log Container Status
-        run: if [ $? -eq 0 ]; then echo "Container up and running" >> ${{ github.workspace }}/log.txt; else echo "Container failed to run" >> ${{ github.workspace }}/log.txt; fi
+        run: if [ $? -eq 0 ]; then echo "Container up and running" >> log.txt; else echo "Container failed to run" >> log.txt; fi
       - name: Check container is running
         run: docker ps
       # set up python and pytest environment
@@ -80,7 +80,7 @@ jobs:
           cd tests
           pytest -v assn3_tests.py > assn3_test_results.txt
       - name: Log Test Status
-        run: if [ $? -eq 0 ]; then echo "tests succeeded" >> ${{ github.workspace }}/log.txt; else echo "tests failed" >> ${{ github.workspace }}/log.txt; fi
+        run: if [ $? -eq 0 ]; then echo "tests succeeded" >> log.txt; else echo "tests failed" >> log.txt; fi
       - name: upload test results
         if: always()
         uses: actions/upload-artifact@v3
@@ -92,7 +92,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: GH_assn3_log
-          path: ${{ github.workspace }}/log.txt
+          path: log.txt
 
       # - name: Set DATE
       #   run: echo "DATE=$(date -I)" >> $GITHUB_ENV
