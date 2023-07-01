@@ -8,6 +8,13 @@ dish_data = ["orange", "spaghetti", "apple pie"]
 meal_data = {"name": "delicious", "appetizer": None, "main": None, "dessert": None}
 
 
+@pytest.mark.order2
+def test_get_dish_by_id():
+    response = requests.get(f"{base_url}/dishes/{meal_data['appetizer']}")
+    assert response.status_code == 200
+    assert 0.9 <= response.json()["sodium"] <= 1.1
+
+
 @pytest.mark.order1
 def test_post_dishes():
     ids = []
@@ -18,13 +25,6 @@ def test_post_dishes():
         ids.append(dish_id)
     assert len(set(ids)) == 3  # all 3 IDs are unique
     meal_data["appetizer"], meal_data["main"], meal_data["dessert"] = ids
-
-
-@pytest.mark.order2
-def test_get_dish_by_id():
-    response = requests.get(f"{base_url}/dishes/{meal_data['appetizer']}")
-    assert response.status_code == 200
-    assert 0.9 <= response.json()["sodium"] <= 1.1
 
 
 @pytest.mark.order3
