@@ -45,7 +45,10 @@ jobs:
     # download image and run it in a container
       - name: Download artifact
         uses: actions/download-artifact@v3
-      - name: Update log
+      - name: Download log artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build-log
         run: |
           value=`cat log.txt`
           echo $value > log.txt
