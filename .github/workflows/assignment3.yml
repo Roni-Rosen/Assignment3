@@ -13,7 +13,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Log Start Time
-        run: echo "$(date --Iminutes)"> log.txt
+        run: echo "$(date --Iminutes)"> log.txt # didnt work, fix
       - name: Log Submitter Name
         run: echo "Michal Ad and Roni Rosen" >> log.txt
       - name: Build Docker image and export
@@ -79,12 +79,12 @@ jobs:
         with:
           name: GH_assn3_test_results
           path: tests/assn3_test_results.txt
-#      - name: upload log file
-#        if: always()
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: GH_assn3_log
-#          path: log.txt
+      - name: upload log file
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: GH_assn3_log
+          path: log.txt
 
       # - name: Set DATE
       #   run: echo "DATE=$(date -I)" >> $GITHUB_ENV
