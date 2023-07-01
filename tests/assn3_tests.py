@@ -55,16 +55,16 @@ def test_post_meal():
     assert int(response.text) > 0
 
 
-# @pytest.mark.order7
-# def test_get_all_meals():
-#     response = requests.get(f"{base_url}/meals")
-#     assert response.status_code == 200
-#     assert len(response.json()) == 1
-#     assert 400 <= response.json()[list(response.json().keys())[0]]["cal"] <= 500
-#
-#
-# @pytest.mark.order8
-# def test_post_meal_with_existing_name():
-#     response = requests.post(f"{base_url}/meals", json=meal_data)
-#     assert response.text == '-2'
-#     assert response.status_code in [400, 422]
+@pytest.mark.order7
+def test_get_all_meals():
+    response = requests.get(f"{base_url}/meals")
+    assert response.status_code == 200
+    assert len(response.json()) == 1
+    assert 400 <= response.json()[list(response.json().keys())[0]]["cal"] <= 500
+
+
+@pytest.mark.order8
+def test_post_meal_with_existing_name():
+    response = requests.post(f"{base_url}/meals", json=meal_data)
+    assert response.text == '-2'
+    assert response.status_code in [400, 422]

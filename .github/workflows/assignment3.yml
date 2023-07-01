@@ -54,13 +54,11 @@ jobs:
           pip install pytest
           pip install requests
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
       # run pytest tests and check results
       - name: Test with pytest
         run: |
           cd tests
           pytest -v assn3_tests.py > assn3_test_results.txt
-      # pytest-code is name of directory in which the pytest code is
       - name: upload test results
         if: always()
         uses: actions/upload-artifact@v3
