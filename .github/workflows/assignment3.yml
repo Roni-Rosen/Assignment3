@@ -46,8 +46,7 @@ jobs:
       - name: run image in container
         run: docker run -p8000:8000 meals_service &
       - name: Log Container Status
-        run: echo "Container up and running" >> log.txt
-#        if [ $? -eq 0 ]; then ; else echo "Container failed to run" >> log.txt; fi
+        run: if [ $? -eq 0 ]; then echo "Container up and running" >> log.txt; else echo "Container failed to run" >> log.txt; fi
       - name: Check container is running
         run: docker ps
       # set up python and pytest environment
@@ -66,8 +65,8 @@ jobs:
         run: |
           cd tests
           pytest -v assn3_tests.py > assn3_test_results.txt
-#      - name: Log Test Status
-#        run: if [ $? -eq 0 ]; then echo "tests succeeded" >> log.txt; else echo "tests failed" >> log.txt; fi
+      - name: Log Test Status
+        run: if [ $? -eq 0 ]; then echo "tests succeeded" >> ../log.txt; else echo "tests failed" >> ../log.txt; fi
       - name: upload test results
         if: always()
         uses: actions/upload-artifact@v3
@@ -79,7 +78,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: GH_assn3_log
-          path: log.txt
+          path: ../log.txt
 
       # - name: Set DATE
       #   run: echo "DATE=$(date -I)" >> $GITHUB_ENV
