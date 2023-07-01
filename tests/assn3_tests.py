@@ -1,4 +1,3 @@
-import pytest
 import requests
 
 base_url = "http://localhost:8000"  # Assuming Flask app is running locally on port 8000
