@@ -46,7 +46,7 @@ jobs:
       - name: run image in container
         run: docker run -p8000:8000 meals_service &
       - name: Log Container Status
-        run: if [ $? -eq 0 ]; then echo "Container up and running" >> tests/log.txt; else echo "Container failed to run" >> tests/log.txt; fi
+        run: if [ $? -eq 0 ]; then echo "Container up and running" > tests/log.txt; else echo "Container failed to run" > tests/log.txt; fi
       - name: Check container is running
         run: docker ps
       # set up python and pytest environment
