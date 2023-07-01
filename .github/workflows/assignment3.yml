@@ -45,14 +45,20 @@ jobs:
     # download image and run it in a container
       - name: Download artifact
         uses: actions/download-artifact@v3
-#      - name: Download log artifact
-#        uses: actions/download-artifact@v3
-#        with:
-#          name: build-log
+      - name: Download log artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build-log
       - name: Update log
         run: |
           value=`cat log.txt`
           echo $value > log.txt
+      - name: upload log file
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: GH_assn3_log
+          path: log.txt
       - name: Load Docker image from previous job
         run: docker load --input meals/image.tar
       - name: check meals image is loaded
@@ -87,12 +93,7 @@ jobs:
         with:
           name: GH_assn3_test_results
           path: tests/assn3_test_results.txt
-      - name: upload log file
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: GH_assn3_log
-          path: log.txt
+
 
       # - name: Set DATE
       #   run: echo "DATE=$(date -I)" >> $GITHUB_ENV
