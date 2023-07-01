@@ -49,6 +49,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build-log
+      - name: Update log
         run: |
           value=`cat log.txt`
           echo $value > log.txt
