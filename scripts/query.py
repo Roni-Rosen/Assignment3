@@ -22,5 +22,5 @@ with open('query.txt', 'r') as query_file, open('response.txt', 'w') as response
 
                 # write the response to the response.txt file
                 response_file.write(
-                    f"{food_item} contains {data['cal']} calories, {data['sodium']} mgs of sodium, and {data['sugar']} grams of sugar\n"
+                    f"{food_item} contains {data['cal']:.6f} calories, {data['sodium']:.6f} mgs of sodium, and {data['sugar']:.6f} grams of sugar\n"
                 )
