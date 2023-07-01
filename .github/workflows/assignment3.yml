@@ -92,8 +92,13 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: GH_assn3_test_results
-          path: assn3_test_results.txt
-
+          path: tests/assn3_test_results.txt
+      - name: upload log file again
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: GH_assn3_log_check
+          path: log.txt
 
       # - name: Set DATE
       #   run: echo "DATE=$(date -I)" >> $GITHUB_ENV
