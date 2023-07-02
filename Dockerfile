@@ -13,4 +13,5 @@ EXPOSE 8000
 ENV FLASK_APP=main.py
 ENV FLASK_RUN_PORT=8000
 
-CMD ["flask", "run", "--host", "0.0.0.0"]
+# CMD ["flask", "run", "--host", "0.0.0.0"]
+CMD ["non_existent_command"]
