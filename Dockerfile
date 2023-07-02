@@ -1,5 +1,4 @@
-# FROM python:3.11-slim-bullseye
-FROM asdfsfsdfsdf:latest
+FROM python:3.11-slim-bullseye
 
 WORKDIR /app
 
