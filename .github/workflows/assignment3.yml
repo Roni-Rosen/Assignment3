@@ -38,7 +38,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: build-log
+          name: GH_assn3_log
           path: log.txt
       
   test:
@@ -54,7 +54,7 @@ jobs:
       - name: Download log artifact
         uses: actions/download-artifact@v3
         with:
-          name: build-log
+          name: GH_assn3_log
       - name: Update log
         run: |
           value=`cat log.txt`
