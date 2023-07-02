@@ -64,15 +64,15 @@ jobs:
       - name: check meals image is loaded
         run: docker image ls
       - name: run image in container
-        run: docker run -p8000:8000 meals_service #&
+        run: docker run -p8000:8000 meals_service &
+      - name: Check container is running
+        run: docker ps
       - name: Log Container Status success
         if: success()
         run: echo "Container up and running" >> log.txt
       - name: Log Container Status failed
         if: failure()
         run: echo "Container failed to run" >> log.txt
-      - name: Check container is running
-        run: docker ps
       # set up python and pytest environment
       - name: Set up Python
         uses: actions/setup-python@v4
