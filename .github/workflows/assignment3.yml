@@ -23,8 +23,12 @@ jobs:
           file: ./Dockerfile
           tags: meals_service:latest
           outputs: type=docker,dest=/tmp/image.tar
-      - name: Log Image Built Status
-        run: if [ $? -eq 0 ]; then echo "image successfully built" >> log.txt; else echo "image not able to be built" >> log.txt; fi
+      - name: Log Image Built Status success
+        if: success()
+        run: echo "image successfully built" >> log.txt
+      - name: Log Image Built Status failed
+        if: failure()
+        run: echo "image not able to be built" >> log.txt
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -61,8 +65,12 @@ jobs:
         run: docker image ls
       - name: run image in container
         run: docker run -p8000:8000 meals_service &
-      - name: Log Container Status
-        run: if [ $? -eq 0 ]; then echo "Container up and running" >> log.txt; else echo "Container failed to run" >> log.txt; fi
+      - name: Log Container Status success
+        if: success()
+        run: echo "Container up and running" >> log.txt
+      - name: Log Container Status failed
+        if: failure()
+        run: echo "Container failed to run" >> log.txt
       - name: Check container is running
         run: docker ps
       # set up python and pytest environment
@@ -85,7 +93,6 @@ jobs:
       - name: Log test status failed
         if: failure()
         run: echo "tests failed" >> log.txt
-#        run: if [ $? -eq 0 ]; then echo "tests succeeded" >> log.txt; else echo "tests failed" >> log.txt; fi
       - name: upload test results
         if: always()
         uses: actions/upload-artifact@v3
