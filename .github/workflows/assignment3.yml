@@ -64,9 +64,11 @@ jobs:
       - name: check meals image is loaded
         run: docker image ls
       - name: run image in container
-        run: docker run -p8000:8000 meals_service &  # check if fails somehow
-      - name: Check container is running
-        run: docker ps
+        run: |
+          docker run -p8000:8000 meals_service &
+          exit 1
+#      - name: Check container is running
+#        run: docker ps
       - name: Log Container Status success
         if: success()
         run: echo "Container up and running" >> log.txt
