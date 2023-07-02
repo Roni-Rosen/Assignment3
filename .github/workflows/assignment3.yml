@@ -59,16 +59,12 @@ jobs:
         run: |
           value=`cat log.txt`
           echo "$value" | sed 's/\\n/\n/g' > log.txt
-      - name: Load Docker image from previous job
-        run: docker load --input meals/image.tar
-      - name: check meals image is loaded
-        run: docker image ls
-      - name: Run a conflicting Docker container
-        run: docker run -d -p 8000:8000 nginx:alpine #fafsd
+#      - name: Load Docker image from previous job
+#        run: docker load --input meals/image.tar
+#      - name: check meals image is loaded
+#        run: docker image ls
       - name: run image in container
-        run: |
-          docker run -p8000:8000 meals_service &
-          sleep 10
+        run: docker run -p8000:8000 meals_service &
       - name: Log Container Status success
         if: success()
         run: echo "Container up and running" >> log.txt
