@@ -79,8 +79,9 @@ jobs:
         run: |
           cd tests
           pytest -v assn3_tests.py > assn3_test_results.txt
-      - name: Log Test Status
-        run: if [ $? -eq 0 ]; then echo "tests succeeded" >> log.txt; else echo "tests failed" >> log.txt; fi
+          if [ $? -eq 0 ]; then echo "tests succeeded" >> log.txt; else echo "tests failed" >> log.txt; fi
+#      - name: Log Test Status
+#        run: if [ $? -eq 0 ]; then echo "tests succeeded" >> log.txt; else echo "tests failed" >> log.txt; fi
       - name: upload test results
         if: always()
         uses: actions/upload-artifact@v3

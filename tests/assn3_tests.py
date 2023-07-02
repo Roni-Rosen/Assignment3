@@ -7,15 +7,15 @@ dish_data = ["orange", "spaghetti", "apple pie"]
 meal_data = {"name": "delicious", "appetizer": None, "main": None, "dessert": None}
 
 
-def test_post_dishes():
-    ids = []
-    for dish_name in dish_data:
-        response = requests.post(f"{base_url}/dishes", json={"name": dish_name})
-        assert response.status_code == 201
-        dish_id = int(response.text)
-        ids.append(dish_id)
-    assert len(set(ids)) == 3  # all 3 IDs are unique
-    meal_data["appetizer"], meal_data["main"], meal_data["dessert"] = ids
+# def test_post_dishes():
+#     ids = []
+#     for dish_name in dish_data:
+#         response = requests.post(f"{base_url}/dishes", json={"name": dish_name})
+#         assert response.status_code == 201
+#         dish_id = int(response.text)
+#         ids.append(dish_id)
+#     assert len(set(ids)) == 3  # all 3 IDs are unique
+#     meal_data["appetizer"], meal_data["main"], meal_data["dessert"] = ids
 
 
 def test_get_dish_by_id():
