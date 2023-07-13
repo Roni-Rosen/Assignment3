@@ -44,7 +44,6 @@ jobs:
   test:
     needs: build
     runs-on: ubuntu-latest
-#    continue-on-error: false
     steps:
     # download image and run it in a container
       - name: Checkout code
@@ -67,7 +66,6 @@ jobs:
         id: "run-container"
         run: |
           docker run -p8000:8000 meals_service &
-#          exit 1
       - name: Log Container Status success
         if: success()
         run: echo "Container up and running" >> log.txt
