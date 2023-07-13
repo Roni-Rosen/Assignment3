@@ -44,7 +44,7 @@ jobs:
   test:
     needs: build
     runs-on: ubuntu-latest
-    continue-on-error: false
+#    continue-on-error: false
     steps:
     # download image and run it in a container
       - name: Checkout code
@@ -64,9 +64,10 @@ jobs:
       - name: check meals image is loaded
         run: docker image ls
       - name: run image in container
+        id: "run-container"
         run: |
           docker run -p8000:8000 meals_service &
-          exit 1
+#          exit 1
       - name: Log Container Status success
         if: success()
         run: echo "Container up and running" >> log.txt
@@ -84,15 +85,24 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       # run pytest tests and check results
       - name: Test with pytest
+        id: "run-tests"
         run: |
           cd tests
           pytest -v assn3_tests.py > assn3_test_results.txt
       - name: Log Test Status Success
-        if: success()
-        run: echo "tests succeeded" >> log.txt
+        if: always()
+        run: |
+          if ${{ steps.run-container.outcome == 'success' && steps.run-tests.outcome == 'success'}}
+          then
+            echo "Tests succeeded" >> log.txt
+          fi
       - name: Log test status failed
-        if: failure()
-        run: echo "tests failed" >> log.txt
+        if: always()
+        run: |
+          if ${{ steps.run-container.outcome == 'success' && steps.run-tests.outcome == 'failure'}}
+          then
+            echo "Tests failed" >> log.txt
+          fi
       - name: upload test results
         if: always()
         uses: actions/upload-artifact@v3
