@@ -67,7 +67,7 @@ jobs:
         id: "run-container"
         run: |
           docker run -p8000:8000 meals_service &
-          exit 1
+#          exit 1
       - name: Log Container Status success
         if: success()
         run: echo "Container up and running" >> log.txt
